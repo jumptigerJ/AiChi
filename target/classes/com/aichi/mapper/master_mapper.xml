@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Master">
+	<resultMap type="com.aichi.bean.Master" id="MasterResult">
+		<id column="MASTER_ID" jdbcType="INTEGER" property="masterId" />
+		<result column="MASTER_NAME" jdbcType="VARCHAR" property="masterName"/>
+		<result column="PASSWROD" jdbcType="VARCHAR" property="password"/>
+		<result column="EMAIL" jdbcType="VARCHAR" property="email"/>
+		<result column="PHONE" jdbcType="INTEGER" property="phone"/>
+	</resultMap>
+	<select id="queryMasterList" parameterType="com.aichi.bean.Master" resultMap="MasterResult">
+		SELECT MASTER_ID,MASTER_NAME,PASSWROD,EMAIL,PHONE FROM master
+	</select>
+	
+	<insert id="insertMaster" parameterType="com.aichi.bean.Master">
+		INSERT INTO master (MASTER_NAME,PASSWROD,EMAIL,PHONE) VALUES (#{masterName},#{password},#{email},#{phone})
+	</insert>
+	
+	<update id="upadateMaster" parameterType="com.aichi.bean.Master">
+		UPDATE master SET MASTER_NAME = #{masterName},PASSWROD = #{password},EMAIL=#{email},PHONE=#{phone} WHERE MASTER_ID = #{masterId} 
+	</update>
+	
+	<delete id="deleteMaster" parameterType="int">
+		DELETE FROM master WHERE MASTER_ID = #{_parameter}
+	</delete>
+</mapper>

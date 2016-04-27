@@ -6,7 +6,14 @@ public class Master {
 	private String password;
 	private String email;
 	private Integer phone;
+	private Integer pageTotalNum;
 	
+	public Integer getPageTotalNum() {
+		return pageTotalNum;
+	}
+	public void setPageTotalNum(Integer pageTotalNum) {
+		this.pageTotalNum = pageTotalNum;
+	}
 	public Integer getMasterId() {
 		return masterId;
 	}

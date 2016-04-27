@@ -10,6 +10,9 @@
  	<!-- 所有mapper文件填写位置 -->
  		<mapper resource="com/aichi/mapper/login_mapper.xml"/>
  		<mapper resource="com/aichi/mapper/customer_mapper.xml"/>
+ 		<mapper resource="com/aichi/mapper/order_mapper.xml"/>
+ 		<mapper resource="com/aichi/mapper/product_mapper.xml"/>
+ 		<mapper resource="com/aichi/mapper/master_mapper.xml"/>
  	</mappers>
  
  </configuration>

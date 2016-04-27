@@ -16,6 +16,7 @@ import com.aichi.service.CustomerService;
 public class CustomerController {
 	@Autowired
 	private CustomerService customerService;
+	//显示列表
 	@RequestMapping("customerQuery")
 	public List<Customer> list(@RequestParam Integer pageNum){
 		return customerService.list(pageNum);

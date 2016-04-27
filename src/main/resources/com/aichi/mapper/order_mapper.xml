@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Order">
+	<resultMap type="com.aichi.bean.Order" id="OrderResult">
+		<id column="ORDER_ID" jdbcType="INTEGER" property="orderId" />
+		<result column="PRODUCT_ID" jdbcType="INTEGER" property="productId"/>
+		<result column="PRODUCT_NAME" jdbcType="VARCHAR" property="productName"/>
+		<result column="NUM" jdbcType="INTEGER" property="num"/>
+		<result column="REMARK" jdbcType="VARCHAR" property="remark"/>
+		<result column="ORDER_TIME" jdbcType="VARCHAR" property="orderTime"/>
+	</resultMap>
+	<select id="queryOrderList" parameterType="com.aichi.bean.Order" resultMap="OrderResult">
+		SELECT ORDER_ID,PRODUCT_ID,PRODUCT_NAME,NUM,REMARK,ORDER_TIME FROM orderMenu
+	</select>
+
+	<update id="updataOrder" parameterType="com.aichi.bean.Order">
+		UPDATE ordermenu SET PRODUCT_NAME = #{productName},NUM = #{num},REMARK=#{remark}  where ORDER_ID = #{orderId}
+	</update>
+	
+	<delete id="deleteOrder" parameterType="int">
+		Delete From ordermenu where ORDER_ID = #{_parameter}
+	</delete>
+</mapper>
+
+
