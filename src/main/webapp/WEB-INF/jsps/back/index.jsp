@@ -195,12 +195,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <div class="box-content box-table">
 	                        <table class="table table-hover tablesorter" id="table2">
 	                          	<thead id="tem2">
-	               					<th id="handle" width="25%">操作</th>
-									<th id="productId" width="15%">产品Id</th>
+	               					<th id="handle" width="20%">操作</th>
+									<th id="productId" width="10%">产品Id</th>
 									<th id="productName" width="15%">产品名称</th>
 									<th id="desciption" width="15%">描述</th>
 									<th id="price" width="15%">价格</th>
 									<th id="num" width="15%">库存</th>
+									<th id="photo" width="10%">图片名称</th>
 								</thead>
 								<tbody>
 								</tbody>
@@ -425,6 +426,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				                <input type="text" class="form-control" placeholder="库存" name="storeNum">
 				            </div>
 				        </div>
+				        <div class="form-group" style="padding-top:8px;">
+				            <label class="col-sm-4 control-label">图片名称：</label>
+				            <div class="col-sm-4">
+				                <input type="text" class="form-control" placeholder="图片名称" name="photo">
+				            </div>
+				        </div>
 		    		</form>
 			
 	            </div>
@@ -477,6 +484,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				            <label class="col-sm-4 control-label">库存：</label>
 				            <div class="col-sm-4">
 				                <input type="text" class="form-control" placeholder="库存" name="storeNum1">
+				            </div>
+				        </div>
+				         <div class="form-group" style="padding-top:8px;">
+				            <label class="col-sm-4 control-label">图片名称：</label>
+				            <div class="col-sm-4">
+				                <input type="text" class="form-control" placeholder="图片名称" name="photo1">
 				            </div>
 				        </div>
 		    		</form>

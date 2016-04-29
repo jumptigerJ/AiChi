@@ -401,6 +401,7 @@ function productAdd(){
 	var desciption = $("input[name='desciption']").val();
 	var price = $("input[name='price']").val();
 	var storeNum = $("input[name='storeNum']").val();
+	var photo = $("input[name='photo']").val();
 	
 	 $.ajax({
          type: "POST",
@@ -409,7 +410,8 @@ function productAdd(){
         	 productName:productName1,
 	 		 desciption:desciption,
 	 		 price:price,
-	 		 num:storeNum
+	 		 num:storeNum,
+	 		 photo:photo
          },
          success: function(data){
         	 productSearch(); 
@@ -430,6 +432,7 @@ function productEdit(){
 	var desciption = $("input[name='desciption1']").val();
 	var price = $("input[name='price1']").val();
 	var storeNum = $("input[name='storeNum1']").val();
+	var photo = $("input[name='photo1']").val();
 	
 	 $.ajax({
          type: "POST",
@@ -439,6 +442,7 @@ function productEdit(){
 	 		 desciption:desciption,
 	 		 price:price,
 	 		 num:storeNum,
+	 		 photo:photo,
 	 		 productId:productId1
          },
          success: function(data){
@@ -538,6 +542,8 @@ function productSearch(){
 				 row.find("#desciption").text(data[i].desciption); 
 				 row.find("#price").text(data[i].price);  
 				 row.find("#num").text(data[i].num);  
+				 row.find("#photo").text(data[i].photo);
+
 				 //将新行添加到表格中  
 				 row.appendTo("#table2");  
 			}  

@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.aichi.bean.Master;
-import com.aichi.bean.Order;
 import com.aichi.dao.MasterDao;
 import com.aichi.service.MasterService;
 @Service

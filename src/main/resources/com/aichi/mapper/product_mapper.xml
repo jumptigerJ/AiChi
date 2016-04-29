@@ -10,19 +10,21 @@
 		<result column="DESCRIPTION" jdbcType="VARCHAR" property="desciption"/>
 		<result column="PRICE" jdbcType="INTEGER" property="price"/>
 		<result column="NUM" jdbcType="INTEGER" property="num"/>
+		<result column="PHOTO" jdbcType="VARCHAR" property="photo"/>
+		
 	</resultMap>
 	<select id="queryProductList" parameterType="com.aichi.bean.Product" resultMap="ProductResult">
-		SELECT PRODUCT_ID,PRODUCT_NAME,DESCRIPTION,PRICE,NUM FROM product
+		SELECT PRODUCT_ID,PRODUCT_NAME,DESCRIPTION,PRICE,NUM,PHOTO FROM product
 	</select>
 	
 	 <!-- 添加产品-->
 	 <insert id="insertProduct" parameterType="com.aichi.bean.Product">
-	 	INSERT INTO product (PRODUCT_NAME,DESCRIPTION,PRICE,NUM) VALUES(#{productName},#{desciption},#{price},#{num})
+	 	INSERT INTO product (PRODUCT_NAME,DESCRIPTION,PRICE,NUM,PHOTO) VALUES(#{productName},#{desciption},#{price},#{num},#{photo})
 	 </insert>
 	
 	<!-- 编辑产品 -->
 	<update id="updateProduct" parameterType="com.aichi.bean.Product">
-		UPDATE product SET PRODUCT_NAME = #{productName},DESCRIPTION = #{desciption},PRICE = #{price},NUM = #{num} WHERE PRODUCT_ID = #{productId} 
+		UPDATE product SET PRODUCT_NAME = #{productName},DESCRIPTION = #{desciption},PRICE = #{price},NUM = #{num},PHOTO=#{photo} WHERE PRODUCT_ID = #{productId} 
 	</update>
 	
 	<!-- 删除产品 -->

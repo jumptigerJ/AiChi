@@ -8,8 +8,16 @@ public class Customer {
 	private String birthDate;
 	private Integer phone;
 	private Integer pageTotalNum;
+	private String password;
 	
+
 	
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	public Integer getPageTotalNum() {
 		return pageTotalNum;
 	}

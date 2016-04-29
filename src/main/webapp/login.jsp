@@ -11,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <title>登录</title>
 </head>
 <link rel="stylesheet" href="<%=basePath %>resources/css/bootstrap.min.css">
-<link href="<%= basePath%>/resources/css/customize-template.css" type="text/css" media="screen, projection" rel="stylesheet" />
+<link href="<%= basePath%>resources/css/customize-template.css" type="text/css" media="screen, projection" rel="stylesheet" />
 <style>
     body{
     	background:<%= basePath%>resources/images/12.jpg;
@@ -50,13 +50,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		        <div class="form-group">
 		            <label class="col-sm-4 control-label">用戶名：</label>
 		            <div class="col-sm-4">
-		                <input type="text" class="form-control" placeholder="username" name="masterName">
+		                <input type="text" class="form-control" placeholder="username" name="masterName" style="height:30px">
 		            </div>
 		        </div>
 		        <div class="form-group">
 		            <label class="col-sm-4 control-label">密码：</label>
 		            <div class="col-sm-4">
-		                <input type="password" class="form-control" placeholder="password" name="password">
+		                <input type="password" class="form-control" placeholder="password" name="password" style="height:30px">
 		            </div>
 		        </div>
 		

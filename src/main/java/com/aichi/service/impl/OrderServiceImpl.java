@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.aichi.bean.Customer;
 import com.aichi.bean.Order;
 import com.aichi.dao.OrderDao;
 import com.aichi.service.OrderService;

@@ -7,6 +7,14 @@ public class Product {
 	private Integer price;
 	private Integer num;
 	private Integer pageTotalNum;
+	private String photo;
+	
+	public String getPhoto() {
+		return photo;
+	}
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
 	public Integer getProductId() {
 		return productId;
 	}
