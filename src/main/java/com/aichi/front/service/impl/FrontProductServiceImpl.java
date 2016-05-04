@@ -44,5 +44,10 @@ public class FrontProductServiceImpl implements FrontProductService {
 		frontProductDao.del(productId);
 		
 	}
+	//根据产品ID进入该产品购买页面,返回该产品数据
+	public List<Product> loadProduct(Integer productId) {
+		
+		return frontProductDao.loadProduct(productId);
+	}
 
 }

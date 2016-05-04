@@ -47,5 +47,11 @@ public class FrontProductDaoImpl extends SqlSessionDaoSupport implements FrontPr
 		sqlSession = getSqlSession();
 		sqlSession.delete("FrontProduct.deleteProduct", productId);
 	}
+	//根据产品ID进入该产品购买页面,返回该产品数据
+	public List<Product> loadProduct(Integer productId) {
+		SqlSession sqlSession=null;
+		sqlSession = getSqlSession();
+		return sqlSession.selectList("FrontProduct.queryProductListById", productId);
+	}
 
 }

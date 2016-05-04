@@ -8,7 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>登录</title>
+<title>后台登录</title>
 </head>
 <link rel="stylesheet" href="<%=basePath %>resources/css/bootstrap.min.css">
 <link href="<%= basePath%>resources/css/customize-template.css" type="text/css" media="screen, projection" rel="stylesheet" />
@@ -24,23 +24,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	}
 </style>
 <body>
- 		<div class="navbar navbar-fixed-top">
-            <div class="navbar-inner">
-                <div class="container">
-                    <button class="btn btn-navbar" data-toggle="collapse" data-target="#app-nav-top-bar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a href="#" class="brand"><i class="icon-leaf">aichi</i></a>
-                    <div id="app-nav-top-bar" class="nav-collapse">
-                    </div>
-                </div>
-            </div>
-        </div>
+		<div class="navbar navbar-fixed-top">
+           <div class="navbar-inner">
+               <div class="container">
+                   <button class="btn btn-navbar" data-toggle="collapse" data-target="#app-nav-top-bar">
+                       <span class="icon-bar"></span>
+                       <span class="icon-bar"></span>
+                       <span class="icon-bar"></span>
+                   </button>
+                   <a href="#" class="brand"><i class="icon-leaf">aichi</i></a>
+                   <div id="app-nav-top-bar" class="nav-collapse">
+                   </div>
+               </div>
+           </div>
+       </div>
 
-		<form class="form-horizontal" role="form" action="login" method="post">
-		<fieldset>
+	   <form class="form-horizontal" role="form" action="login" method="post">
+		   <fieldset>
 				<legend>
 				     <div class="form-group">
 		            <label class="col-sm-4 control-label">AiChi后台管理系统</label>
@@ -65,8 +65,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		                <button type="submit" class="btn btn-default">登录</button>
 		            </div>
 		        </div>
-		</fieldset>
-		    </form>
+		   </fieldset>
+	  </form>
 
 </body>
 </html>

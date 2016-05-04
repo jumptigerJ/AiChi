@@ -3,10 +3,16 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Buyer">
+	<!--  买家登录确认    -->
 	<resultMap type="com.aichi.bean.Customer" id="loginResult">
 		<id column="CUSTOMER_ID" jdbcType="INTEGER" property="customerId" />
 	</resultMap>
 	<select id="queryBuyerLogin" parameterType="com.aichi.bean.Customer" resultMap="loginResult">
 		select CUSTOMER_ID from customer where CUSTOMER_NAME = #{customerName} and PASSWORD = #{password}
 	</select>
+	<!--   买家注册      -->
+	<insert id="insertBuyer" parameterType="com.aichi.bean.Customer">
+		INSERT INTO customer (CUSTOMER_NAME,EMAIL,SEX,BIRTH_DATE,PHONE,PASSWORD) VALUES(#{customerName},#{email},#{sex},#{birthDate},#{phone},#{password})
+	</insert>
+	
 </mapper>

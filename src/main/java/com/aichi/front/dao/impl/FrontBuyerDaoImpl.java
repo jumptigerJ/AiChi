@@ -23,8 +23,14 @@ public class FrontBuyerDaoImpl extends SqlSessionDaoSupport implements FrontBuye
 		List<Customer> list = new ArrayList<Customer>();
 		SqlSession sqlSession=null;
 		sqlSession = getSqlSession();
-		list = sqlSession.selectList("Buyer.queryBuyerLogin", customer);
+		list = sqlSession.selectList(".queryBuyerLogin", customer);
 		return list;
+	}
+	//买家注册
+	public void buyerRegister(Customer customer) {
+		SqlSession sqlSession=null;
+		sqlSession = getSqlSession();
+		sqlSession.insert("Buyer.insertBuyer", customer);
 	}
 	
 }

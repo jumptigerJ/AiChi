@@ -13,4 +13,6 @@ public interface FrontProductService {
 	public void edit(Product product);
 	//删除产品
 	public void del(Integer productId);
+	//根据产品ID进入该产品购买页面,返回该产品数据
+	public List<Product> loadProduct(Integer productId);
 }

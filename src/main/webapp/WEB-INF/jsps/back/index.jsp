@@ -8,7 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>后台管理系统</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">   
 <meta name="layout" content="main"/>
 <script src="<%= basePath%>resources/js/jquery.min.js" type="text/javascript" ></script>
@@ -30,7 +30,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                         <ul class="nav pull-right">
                             <li>
-                                <a href="loiginOut">Admin</a>
+                                <a href="login.jsp">Admin</a>
                             </li>
                         </ul>
                     </div>

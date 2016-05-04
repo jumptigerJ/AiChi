@@ -31,4 +31,18 @@
 	<delete id="deleteProduct" parameterType="int">
 		Delete From product where PRODUCT_ID = #{_parameter}
 	</delete>
+	
+	<!-- 根据产品ID进入该产品购买页面,返回该产品数据 -->
+	<resultMap type="com.aichi.bean.Product" id="ProductListByIdResult">
+		<id column="PRODUCT_ID" jdbcType="INTEGER" property="productId" />
+		<result column="PRODUCT_NAME" jdbcType="VARCHAR" property="productName"/>
+		<result column="DESCRIPTION" jdbcType="VARCHAR" property="desciption"/>
+		<result column="PRICE" jdbcType="INTEGER" property="price"/>
+		<result column="NUM" jdbcType="INTEGER" property="num"/>
+		<result column="PHOTO" jdbcType="VARCHAR" property="photo"/>
+		
+	</resultMap>
+	<select id="queryProductListById" parameterType="int" resultMap="ProductListByIdResult">
+		SELECT PRODUCT_ID,PRODUCT_NAME,DESCRIPTION,PRICE,NUM,PHOTO FROM product where PRODUCT_ID = #{_parameter}
+	</select>
 </mapper>

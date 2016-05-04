@@ -29,17 +29,51 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 function register(){
 	var customerName = $("input[name='customerName']").val();
 	var email = $("input[name='email']").val();
-	var sex = $("#sex option=selected").text();
-	var email = $("input[name='email']")
+	var sex = $("#sex option:selected").val();
+	var birthDate = $("#birthDate").val();
+	var phone = $("input[name='phone']").val();
+	var password = $("input[name='password']").val();
+	if(customerName == ""){
+		alert("用户名不能为空");
+	}else if(password == ""){
+		alert("密码不能为空");
+	}else if(phone == ""){
+		alert("电话号码不能为空");
+	}else if(password == ""){
+		alert("密码不能为空");
+	}
 	
+	$.ajax({
+		type:"POST",
+		url:"buyerRegister",
+	    data:{
+	    	customerName:customerName,
+	    	email:email,
+	    	sex:sex,
+	    	birthDate:birthDate,
+	    	phone:phone,
+	    	password:password	
+	    },
+	    success:function(){
+	    
+	    },
+	    error :function(){
+	         alert("222");
+	     },
+       complete:function(jqXHR,textStatus){
+     	  	console.log("textStatus:%s",textStatus);
+       }
+	})
 	
+	alert(customerName+"---"+email+"----"+sex+"----"+birthDate+"------"+phone+"------"+password);
 	
+	 
 } 
 
 	
 </script>
 <body>
-	  <form class="form-horizontal" role="form" action="buyerLogin" method="post">
+	  <form class="form-horizontal" role="form" method="post">
 		<fieldset>
 			<legend>
 			     <div class="form-group">
@@ -50,19 +84,19 @@ function register(){
 	        <div class="form-group">
 	            <label class="col-sm-4 control-label" >用戶名：</label>
 	            <div class="col-sm-4">
-	                <input type="text" class="form-control" placeholder="username" name="customerName" style="height:30px">
+	                <input type="text" class="form-control" placeholder="username" name="customerName" style="width:180px;height:30px" />
 	            </div>
 	        </div>
 	        <div class="form-group">
 	            <label class="col-sm-4 control-label">邮箱：</label>
 	            <div class="col-sm-4">
-	                <input type="text" class="form-control" placeholder="email" name="email" style="height:30px">
+	                <input type="text" class="form-control" placeholder="email" name="email" style="width:180px;height:30px" />
 	            </div>
 	        </div>
 		    <div class="form-group">
 	            <label class="col-sm-4 control-label">性别：</label>
 	            <div class="col-sm-4">
-	               <select id="sex" style="width:150px">
+	               <select id="sex" name="sex" style="width:180px;">
 	               		<option selected>男</option>
 	               		<option>女</option>
 	               </select>
@@ -73,7 +107,7 @@ function register(){
 	            <label class="col-sm-4 control-label">出生年月：</label>
 	            <div class="col-sm-6">
                     <div>
-			            <input type="text" data-beatpicker="true"/ style="width:100px;height:30px">
+			            <input id="birthDate" name="birthDate" type="text" data-beatpicker="true" style="width:100px;height:30px"/>
 			        </div>
 	            </div>
 	        </div>
@@ -81,20 +115,21 @@ function register(){
 	        <div class="form-group">
 	            <label class="col-sm-4 control-label">电话号码：</label>
 	            <div class="col-sm-4">
-	                <input type="text" class="form-control" placeholder="phone" name="phone" style="height:30px">
+	                <input type="text" class="form-control" placeholder="phone" name="phone" style="height:30px;width:180px;"/>
 	            </div>
 	        </div>
 	        
 	        <div class="form-group">
 	            <label class="col-sm-4 control-label">密码：</label>
 	            <div class="col-sm-4">
-	                <input type="password" class="form-control" placeholder="password" name="password" style="height:30px">
+	                <input type="password" class="form-control" placeholder="password" name="password" style="height:30px;width:180px;">
 	            </div>
 	        </div>
 	        
 	       	<div class="form-group">
 	            <div class="col-sm-offset-4 col-sm-10">
-	                <button type="submit" class="btn btn-default">注册</button>
+	                <button type="submit" class="btn btn-default" onclick="register()">注册</button>              
+	                 <a class="btn btn-default" href="test.jsp">返回店铺</a>
 	            </div>
 	        </div>
 		</fieldset>

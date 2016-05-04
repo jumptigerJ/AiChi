@@ -22,7 +22,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body onload="test('<%=basePath%>')">
     <div class="page-header">
        
-   	    <a style="float:right;margin-right:10px;">用户注册</a><a href="buyerLogin.jsp" style="float:right;margin-right:10px;">登录</a>
+   	    <a style="float:right;margin-right:10px;" href="buyerRegister.jsp">用户注册</a><a href="buyerLogin.jsp" style="float:right;margin-right:10px;">登录</a>
         <a href="#" style="float:right;margin-right:10px;">我的购物车</a>
         <h1 style="margin-left:50px;margin-bottom:20px">AiChi铺</h1>
        
@@ -36,14 +36,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                <div class="caption" style="text-align:center">
 	                    <h3 id="title">天然紫薯</h3>
 	                    <p id="price"> <span>￥</span>20</p>
-	                    <p><a href="#" class="btn btn-primary" role="button">好吃</a><a href="#" class="btn btn-default" role="button">买我</a></p>
+	                    <p><a  class="btn btn-primary" role="button">好吃</a><a href="javascript:loadProduct(id);" class="btn btn-default" role="button" id="buy">买我</a></p>
 	                </div>
 	            </div>
 	        </div>
 	    </div>
     </div>
     
-    
-
 </body>
 </html>

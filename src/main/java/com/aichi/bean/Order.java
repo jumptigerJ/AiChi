@@ -7,7 +7,31 @@ public class Order {
 	private Integer num;
 	private String remark;
 	private String orderTime;
+	private String receiver;
+	private String receiverAddress;
+	private Integer receiverPhone;
+		
 	private Integer pageTotalNum;
+	
+	
+	public String getReceiver() {
+		return receiver;
+	}
+	public void setReceiver(String receiver) {
+		this.receiver = receiver;
+	}
+	public String getReceiverAddress() {
+		return receiverAddress;
+	}
+	public void setReceiverAddress(String receiverAddress) {
+		this.receiverAddress = receiverAddress;
+	}
+	public Integer getReceiverPhone() {
+		return receiverPhone;
+	}
+	public void setReceiverPhone(Integer receiverPhone) {
+		this.receiverPhone = receiverPhone;
+	}
 	public Integer getOrderId() {
 		return orderId;
 	}
