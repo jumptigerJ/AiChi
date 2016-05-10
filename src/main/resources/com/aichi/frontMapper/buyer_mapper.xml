@@ -6,13 +6,21 @@
 	<!--  买家登录确认    -->
 	<resultMap type="com.aichi.bean.Customer" id="loginResult">
 		<id column="CUSTOMER_ID" jdbcType="INTEGER" property="customerId" />
+		<result column="CUSTOMER_NAME" jdbcType="VARCHAR" property="customerName"/>
+		<result column="EMAIL" jdbcType="VARCHAR" property="email"/>
+		<result column="SEX" jdbcType="VARCHAR" property="sex"/>
+		<result column="BIRTH_DATE" jdbcType="VARCHAR" property="birthDate"/>
+		<result column="PHONE" jdbcType="INTEGER" property="phone"/>
 	</resultMap>
 	<select id="queryBuyerLogin" parameterType="com.aichi.bean.Customer" resultMap="loginResult">
-		select CUSTOMER_ID from customer where CUSTOMER_NAME = #{customerName} and PASSWORD = #{password}
+		select CUSTOMER_ID,CUSTOMER_NAME,EMAIL,SEX,BIRTH_DATE,PHONE from customer where CUSTOMER_NAME = #{customerName} and PASSWORD = #{password}
 	</select>
 	<!--   买家注册      -->
 	<insert id="insertBuyer" parameterType="com.aichi.bean.Customer">
 		INSERT INTO customer (CUSTOMER_NAME,EMAIL,SEX,BIRTH_DATE,PHONE,PASSWORD) VALUES(#{customerName},#{email},#{sex},#{birthDate},#{phone},#{password})
 	</insert>
-	
+	<!-- 买家填写收件人信息并下订单 -->
+	<insert id="insertOrder" parameterType="com.aichi.bean.Order">
+		INSERT INTO ordermenu (PRODUCT_ID,PRODUCT_NAME,NUM,REMARK,ORDER_TIME,RECEIVER,RECEIVER_ADDRESS,RECEIVER_PHONE,CUSTOMER_ID) VALUES(#{productId},#{productName},#{num},#{remark},#{orderTime},#{receiver},#{receiverAddress},#{receiverPhone},#{customerId})
+	</insert>
 </mapper>

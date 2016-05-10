@@ -15,7 +15,7 @@
 	</resultMap>
 	<select id="queryProductList" parameterType="com.aichi.bean.Product" resultMap="ProductResult">
 		SELECT PRODUCT_ID,PRODUCT_NAME,DESCRIPTION,PRICE,NUM,PHOTO FROM product
-	</select>
+	</select> 
 	
 	 <!-- 添加产品-->
 	 <insert id="insertProduct" parameterType="com.aichi.bean.Product">

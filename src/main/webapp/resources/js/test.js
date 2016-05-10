@@ -17,7 +17,7 @@ function test(basePath){
 				 row.find("#title").text(data[i].productName);
 				 row.find("#price").html("<span>￥</span>"+data[i].price);
 				 row.find("#img").attr("src",imgPath+data[i].photo);
-				 row.find("#buy").attr("href","product.jsp?id="+data[i].productId+"");
+				 row.find("#buy").attr("href","product.jsp?id="+data[i].productId+"&productName="+data[i].productName+"&price="+data[i].price+"");
 				 row.appendTo("#box");
 			 }
 		

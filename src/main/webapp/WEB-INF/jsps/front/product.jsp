@@ -18,7 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         margin-bottom:20px;
     }
     #box {
-        margin-top:20px;
+        margin-top:80px;
         margin-bottom: 0;
     }
     [class*="col-"]{
@@ -53,20 +53,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	}
 </script>
 <body onload="loadProduct('<%= request.getParameter("id") %>','<%=basePath %>')">
-	<nav class="navbar navbar-default" role="navigation">
-	    <div class="navbar-header">
-	    	<%
-	    		if(session.getAttribute("customer")!=null){
-	    			out.print("<a href='#' style='margin-left:20px'><font size='4' color='#FF0000'>HI,"+session.getAttribute("customerName")+"</font></a>");
-	    		}
-	    	%>
-	    	<a href="index.jsp"><h1 style="margin-left:50px;margin-bottom:20px">AiChi铺</h1></a>
-	    </div>
-	    <div >			 
-	   	    <a style="float:right;margin-right:10px;" href="buyerRegister.jsp">用户注册</a><a href="buyerLogin.jsp" style="float:right;margin-right:10px;">登录</a>
-	        <a href="#" style="float:right;margin-right:10px;">我的购物车</a>
-	    </div>
-	</nav>
 	  <div class="container">
 	    <div class="row" id="box">
 	        <div class="col-md-3 col-md-offset-2" style="height:300px;margin-right:50px;">
@@ -78,8 +64,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                </div>
 	            </div>
 	        </div>
-	        <form action="receiver_info" method="post">
-		        <div class="col-md-3" style="height:300px;width:380px;">
+	        <form action="receiver_info.jsp">
+		        <div class="col-md-3" style="height:300px">
 		           <div class="row">
 	                    <div class="col-xs-12" style="text-align:center">
 	                       <h2 id="title1"></h2>
@@ -90,7 +76,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                     	   购买数量：
 	                    </div>
 	                    <div class="col-xs-6" style="height:60px">
-	                        <input type="text" id="buyNum" name="buyNum" style="width:80px" name="buyNum">
+	                        <input type="text" id="buyNum" style="width:80px" name="buyNum">
 	                    </div>
 	                </div>
 	                 <div class="row">
@@ -109,12 +95,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	               			 <a  class="btn btn-primary" role="button">加入购物车</a>
 	               		</div>
 	                    <div class="col-xs-6" style="height:60px">
-	                    	<button class="btn btn-default" type="submit">立即购买</button> 
-	                    	<%if(request.getAttribute("needLogin")!=null&&(Integer)request.getAttribute("needLogin")==1){
-	                    		out.print("<a href='buyerLogin.jsp'><font color='red'>请登录<font></a>");
-	                    	}
-	                    
-	                    	%>      
+	                    	<button class="btn btn-default" type="submit">立即购买</button>       
 	                    </div>
 	                </div>
 		        </div>

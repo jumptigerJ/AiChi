@@ -10,10 +10,26 @@ public class Order {
 	private String receiver;
 	private String receiverAddress;
 	private Integer receiverPhone;
+	private String totalPay;
+	private Integer customerId;
 		
+
+
 	private Integer pageTotalNum;
 	
 	
+	public Integer getCustomerId() {
+		return customerId;
+	}
+	public void setCustomerId(Integer customerId) {
+		this.customerId = customerId;
+	}
+	public String getTotalPay() {
+		return totalPay;
+	}
+	public void setTotalPay(String totalPay) {
+		this.totalPay = totalPay;
+	}
 	public String getReceiver() {
 		return receiver;
 	}

@@ -64,8 +64,7 @@ function register(){
      	  	console.log("textStatus:%s",textStatus);
        }
 	})
-	
-	alert(customerName+"---"+email+"----"+sex+"----"+birthDate+"------"+phone+"------"+password);
+
 	
 	 
 } 
@@ -129,7 +128,7 @@ function register(){
 	       	<div class="form-group">
 	            <div class="col-sm-offset-4 col-sm-10">
 	                <button type="submit" class="btn btn-default" onclick="register()">注册</button>              
-	                 <a class="btn btn-default" href="test.jsp">返回店铺</a>
+	                 <a class="btn btn-default" href="index.jsp">返回店铺</a>
 	            </div>
 	        </div>
 		</fieldset>
