@@ -7,6 +7,8 @@
 <title>我的购物车</title>
 </head>
 <body>
-	
+	<div style="text-align:center">
+		已成功加入购物车，<a href="buyer_productList.jsp">去购物车结算</a>
+	</div>
 </body>
 </html>

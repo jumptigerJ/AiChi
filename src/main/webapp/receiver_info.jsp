@@ -15,6 +15,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <title>收件信息</title>
 <link rel="stylesheet" href="<%=basePath %>resources/css/bootstrap.min.css">
 <script src="<%= basePath%>resources/js/jquery.min.js" type="text/javascript" ></script>
+<script src="<%= basePath%>resources/js/bootstrap.min.js" type="text/javascript" ></script>
 </head>
 <style>
 	form{
@@ -75,9 +76,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    	%>
 	    	<a href="index.jsp"><h1 style="margin-left:50px;margin-bottom:20px">AiChi铺</h1></a>
 	    </div>
-	    <div >			 
-	   	    <a style="float:right;margin-right:10px;" href="buyerRegister.jsp">用户注册</a><a href="buyerLogin.jsp" style="float:right;margin-right:10px;">登录</a>
-	        <a href="#" style="float:right;margin-right:10px;">我的购物车</a>
+	    <div >
+		    <%
+		    	if(session.getAttribute("customer")==null){
+		   			out.print("<a style='float:right;margin-right:10px;' href='buyerRegister.jsp'>用户注册</a><a href='buyerLogin.jsp' style='float:right;margin-right:10px;'>登录</a>");
+		    	}
+		    %>			 
+	   	   
+	        <a href="myCart.jsp" style="float:right;margin-right:20px;">我的购物车</a>
+	 
+	        <li class="dropdown" style="float:right;margin-right:20px;list-style-type:none">
+	        	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+	        	我的AiChi
+	        	</a>
+	        	<ul class="dropdown-menu" role="menu">
+	        		<li><a href="myOrder.jsp">我的历史订单</a></li>
+	        		<li><a href="myInfo.jsp">我的个人信息</a></li>
+	        	</ul>
+	        </li>
 	    </div>
 	</nav>
 		<form class="form-horizontal" role="form" action="orderSubmit" method="post">
@@ -127,6 +143,5 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        </div>
 	 </form>
 	  
-
 </body>
 </html>

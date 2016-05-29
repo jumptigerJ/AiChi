@@ -14,9 +14,6 @@
  		<mapper resource="com/aichi/mapper/product_mapper.xml"/>
  		<mapper resource="com/aichi/mapper/master_mapper.xml"/>
  		<mapper resource="com/aichi/frontMapper/product_mapper.xml"/>
- 		<mapper resource="com/aichi/frontMapper/buyer_mapper.xml"/>
- 		
- 		
+ 		<mapper resource="com/aichi/frontMapper/buyer_mapper.xml"/>	
  	</mappers>
- 
  </configuration>

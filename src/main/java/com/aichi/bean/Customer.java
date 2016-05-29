@@ -6,7 +6,7 @@ public class Customer {
 	private String email;
 	private String sex;
 	private String birthDate;
-	private Integer phone;
+	private String phone;
 	private Integer pageTotalNum;
 	private String password;
 	
@@ -54,10 +54,10 @@ public class Customer {
 	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
 	}
-	public Integer getPhone() {
+	public String getPhone() {
 		return phone;
 	}
-	public void setPhone(Integer phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 	

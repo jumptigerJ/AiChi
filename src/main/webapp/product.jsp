@@ -9,6 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 <link rel="stylesheet" href="<%=basePath %>resources/css/bootstrap.min.css">
 <script src="<%= basePath%>resources/js/jquery.min.js" type="text/javascript" ></script>
+<script src="<%= basePath%>resources/js/bootstrap.min.js" type="text/javascript" ></script>
 <script src="<%= basePath%>resources/js/test.js" type="text/javascript" ></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>产品页</title>
@@ -62,9 +63,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    	%>
 	    	<a href="index.jsp"><h1 style="margin-left:50px;margin-bottom:20px">AiChi铺</h1></a>
 	    </div>
-	    <div >			 
-	   	    <a style="float:right;margin-right:10px;" href="buyerRegister.jsp">用户注册</a><a href="buyerLogin.jsp" style="float:right;margin-right:10px;">登录</a>
-	        <a href="#" style="float:right;margin-right:10px;">我的购物车</a>
+	    <div >
+		    <%
+		    	if(session.getAttribute("customer")==null){
+		   			out.print("<a style='float:right;margin-right:10px;' href='buyerRegister.jsp'>用户注册</a><a href='buyerLogin.jsp' style='float:right;margin-right:10px;'>登录</a>");
+		    	}
+		    %>			 
+	   	   
+	        <a href="myCart.jsp" style="float:right;margin-right:20px;">我的购物车</a>
+	 
+	        <li class="dropdown" style="float:right;margin-right:20px;list-style-type:none">
+	        	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+	        	我的AiChi
+	        	</a>
+	        	<ul class="dropdown-menu" role="menu">
+	        		<li><a href="myOrder.jsp">我的历史订单</a></li>
+	        		<li><a href="myInfo.jsp">我的个人信息</a></li>
+	        	</ul>
+	        </li>
 	    </div>
 	</nav>
 	  <div class="container">
@@ -102,11 +118,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                    </div>
 	                </div>
 	                <input type="hidden" name="id" value="<%=request.getParameter("id")%>">
-	                <input type="hidden" name="product" value="<%=request.getParameter("productName")%>">
+	                <input type="hidden" id="product" name="product" value="<%=request.getParameter("productName")%>">
 	                <input type="hidden" name="price" value="<%=request.getParameter("price")%>">
 	                <div class="row">
 	                    <div class="col-xs-6"  style="height:60px">
-	               			 <a  class="btn btn-primary" role="button">加入购物车</a>
+	               			 <a id="addToCart" class="btn btn-primary" role="button" href="#">加入购物车</a>
 	               		</div>
 	                    <div class="col-xs-6" style="height:60px">
 	                    	<button class="btn btn-default" type="submit">立即购买</button> 
@@ -121,5 +137,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    </form>
 	    </div>
     </div>
+    <script type="text/javascript">
+    	$(function(){
+    		$("#addToCart").click(function(){
+    			var num = $("#buyNum").val();
+    			var productName = $("#product")[0].value;
+    			$("#addToCart").attr("href","addToCart?productId=<%=request.getParameter("id")%>&price=<%=request.getParameter("price")%>&customerId=<%=session.getAttribute("customerId") %>&num="+num+"&productName="+productName+"");
+    		})
+    	})
+    </script>
 </body>
 </html>

@@ -1,11 +1,9 @@
 package com.aichi.controller;
 
-import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.aichi.bean.Cart;
 import com.aichi.bean.Customer;
 import com.aichi.bean.Order;
 import com.aichi.bean.Product;
@@ -44,10 +43,11 @@ public class FrontController {
 			for(Customer c:list){
 				session.setAttribute("customerId", c.getCustomerId());
 				session.setAttribute("customerName", c.getCustomerName());
+				session.setAttribute("email", c.getEmail());
+				session.setAttribute("phone", c.getPhone().toString().substring(0, 3));
 				
 			}
 			session.setAttribute("customer", customer);
-			
 			return "redirect:index.jsp";
 		}
 		return "redirect:buyerLogin.jsp";
@@ -62,9 +62,8 @@ public class FrontController {
 	}
 	//跳转到产品购买页
 	@RequestMapping("receiver_info")
-	public ModelAndView product(ModelAndView model,@RequestParam Integer id,@RequestParam String product,@RequestParam String price,HttpServletRequest requset,@RequestParam String buyNum){
+	public ModelAndView product(ModelAndView model,@RequestParam Integer id,@RequestParam String product,@RequestParam String price,@RequestParam String buyNum){
 		System.out.println("#######"+id);
-		requset.setAttribute("id", id);
 		model.addObject("id",id);
 		model.addObject("product",product);
 		model.addObject("price",price);
@@ -87,5 +86,59 @@ public class FrontController {
 		return "redirect:successOrder.jsp";
 
 	}
-	
+	//返回买家的所有订单消息
+	@ResponseBody
+	@RequestMapping("myOrder")
+	public List<Order> myOrder(Integer customerId){
+		List<Order> list = frontBuyerService.queryMyOrder(customerId);
+		return list;
+	}
+	//加入购物车
+	@RequestMapping("addToCart")
+	public String addToCart(Cart cart){
+		frontBuyerService.addToCart(cart);
+		System.out.println("++++--"+cart.getProductName()+cart.getCustomerId()+cart.getNum()+cart.getPrice());
+		return "redirect:cart.jsp";
+	}
+	//显示购物车产品
+	@ResponseBody
+	@RequestMapping("myCart")
+	public List<Cart> myCart(@RequestParam Integer customerId){
+		return frontBuyerService.queryMyCart(customerId);
+	}
+	//购物车产品立即购买跳转到产品购买页
+	@RequestMapping("cartReceiverInfo")
+	public ModelAndView cartProduct(ModelAndView model,@RequestParam Integer id,@RequestParam String product,@RequestParam String price,@RequestParam String buyNum,@RequestParam Integer cartId){
+		System.out.println("#######"+id);
+		model.addObject("id",id);
+		model.addObject("product",product);
+		model.addObject("price",price);
+		model.addObject("buyNum",buyNum);
+		model.setViewName("redirect:receiver_info.jsp");
+		frontBuyerService.deleteCartProduct(cartId);
+		return model;   
+	}
+	//删除购物车产品
+	@RequestMapping("deleteCartProduct")
+	public void deleteCartProduct(Integer cartId){
+		frontBuyerService.deleteCartProduct(cartId);
+	}
+	//修改手机号码
+	@ResponseBody
+	@RequestMapping("editPhone")
+	public Map<String,String> checkPhone(String oldphone){
+		System.out.println("+++"+oldphone);
+		boolean flag = false;
+		flag = frontBuyerService.checkPhone(oldphone);
+		Map<String,String> inf = new HashMap<String,String>();
+		System.out.println(flag);
+		if(flag==true){
+			inf.put("info", "手机号码正确");
+			inf.put("status", "y");
+		}else{
+			inf.put("info", "手机号码不正确");
+			inf.put("status", "n");
+		}
+		return inf;
+	}
 }

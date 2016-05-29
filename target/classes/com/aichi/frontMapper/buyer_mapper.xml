@@ -10,7 +10,7 @@
 		<result column="EMAIL" jdbcType="VARCHAR" property="email"/>
 		<result column="SEX" jdbcType="VARCHAR" property="sex"/>
 		<result column="BIRTH_DATE" jdbcType="VARCHAR" property="birthDate"/>
-		<result column="PHONE" jdbcType="INTEGER" property="phone"/>
+		<result column="PHONE" jdbcType="VARCHAR" property="phone"/>
 	</resultMap>
 	<select id="queryBuyerLogin" parameterType="com.aichi.bean.Customer" resultMap="loginResult">
 		select CUSTOMER_ID,CUSTOMER_NAME,EMAIL,SEX,BIRTH_DATE,PHONE from customer where CUSTOMER_NAME = #{customerName} and PASSWORD = #{password}
@@ -23,4 +23,49 @@
 	<insert id="insertOrder" parameterType="com.aichi.bean.Order">
 		INSERT INTO ordermenu (PRODUCT_ID,PRODUCT_NAME,NUM,REMARK,ORDER_TIME,RECEIVER,RECEIVER_ADDRESS,RECEIVER_PHONE,CUSTOMER_ID) VALUES(#{productId},#{productName},#{num},#{remark},#{orderTime},#{receiver},#{receiverAddress},#{receiverPhone},#{customerId})
 	</insert>
+	
+	<!-- 返回买家的所有订单 -->
+	<resultMap type="com.aichi.bean.Order" id="myOrder">
+		<id column="ORDER_ID" jdbcType="INTEGER" property="orderId" />
+		<result column="PRODUCT_ID" jdbcType="VARCHAR" property="productId"/>
+		<result column="PRODUCT_NAME" jdbcType="VARCHAR" property="productName"/>
+		<result column="NUM" jdbcType="INTEGER" property="num"/>
+		<result column="REMARK" jdbcType="VARCHAR" property="remark"/>
+		<result column="ORDER_TIME" jdbcType="VARCHAR" property="orderTime"/>
+		<result column="CUSTOMER_ID" jdbcType="INTEGER" property="customerId"/>
+		<result column="RECEIVER" jdbcType="VARCHAR" property="receiver"/>
+		<result column="RECEIVER_ADDRESS" jdbcType="VARCHAR" property="receiverAddress"/>
+		<result column="RECEIVER_PHONE" jdbcType="INTEGER" property="receiverPhone"/>
+	</resultMap>
+	<!-- 返回买家的所有订单 -->
+	<select id="queryMyOrder" parameterType="int" resultMap="myOrder">
+		SELECT ORDER_ID,PRODUCT_ID,PRODUCT_NAME,NUM,REMARK,ORDER_TIME,RECEIVER,RECEIVER_ADDRESS,RECEIVER_PHONE,CUSTOMER_ID FROM ordermenu where CUSTOMER_ID = #{_parameter};
+	</select>
+	<!-- 添加到购物车 -->
+	<insert id="addToCart" parameterType="com.aichi.bean.Cart">
+		INSERT INTO cart (PRODUCT_ID,PRODUCT_NAME,NUM,PRICE,CUSTOMER_ID) VALUES(#{productId},#{productName},#{num},#{price},#{customerId})
+	</insert>
+	<!-- 显示购物车的产品 -->
+	<resultMap type="com.aichi.bean.Cart" id="myCart">
+		<id column="CART_ID" jdbcType="INTEGER" property="cartId" />
+		<result column="PRODUCT_ID" jdbcType="INTEGER" property="productId"/>
+		<result column="PRODUCT_NAME" jdbcType="VARCHAR" property="productName"/>
+		<result column="NUM" jdbcType="INTEGER" property="num"/>
+		<result column="PRICE" jdbcType="INTEGER" property="price"/>
+		<result column="CUSTOMER_ID" jdbcType="INTEGER" property="customerId"/>
+	</resultMap>
+	<select id="queryMyCart" parameterType="int" resultMap="myCart">
+		SELECT CART_ID,PRODUCT_ID,PRODUCT_NAME,NUM,PRICE,CUSTOMER_ID FROM cart where CUSTOMER_ID = #{_parameter};
+	</select>
+	<!-- 删除购物车产品 -->
+	<delete id="deleteCartProduct" parameterType="int">
+		delete from cart where CART_ID = #{_parameter};
+	</delete>
+	<!-- 审核手机号 -->
+	<resultMap type="com.aichi.bean.Customer" id="phoneCheck">
+		<id column="CUSTOMER_ID" jdbcType="INTEGER" property="customerId" />
+	</resultMap>
+	<select id="checkphone" parameterType="String" resultMap="phoneCheck">
+		select CUSTOMER_ID from customer where PHONE = #{_parameter};
+	</select>
 </mapper>

@@ -13,31 +13,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta name="layout" content="main"/>
 <script src="<%= basePath%>resources/js/jquery.min.js" type="text/javascript" ></script>
 <script src="<%= basePath%>resources/js/bootstrap.min.js" type="text/javascript" ></script>
-<script src="<%= basePath%>resources/js/pagination.js" type="text/javascript" ></script>
+<script src="<%= basePath%>resources/js/buyer_productList.js" type="text/javascript" ></script>
 <link href="<%= basePath%>resources/css/customize-template.css" type="text/css" media="screen, projection" rel="stylesheet" />
 </head>
 <body>
- <div class="navbar navbar-fixed-top">
-            <div class="navbar-inner">
-                <div class="container">
-                    <button class="btn btn-navbar" data-toggle="collapse" data-target="#app-nav-top-bar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a href="#" class="brand"><i class="icon-leaf">aichi</i></a>
-                    <div id="app-nav-top-bar" class="nav-collapse">
-
-                        <ul class="nav pull-right">
-                            <li>
-                                <a href="loiginOut">Admin</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+	<nav class="navbar navbar-default" role="navigation">
+	    <div class="navbar-header">
+	    	<%
+	    		if(session.getAttribute("customer")!=null){
+	    			out.print("<a href='#' style='margin-left:20px'><font size='4' color='#FF0000'>HI,"+session.getAttribute("customerName")+"</font></a>");
+	    		}
+	    	%>
+	    	<a href="index.jsp"><h1 style="margin-left:50px;margin-bottom:20px">AiChi铺</h1></a>
+	    </div>
+	</nav>
  <div id="body-container">
      <div id="body-content">
         <section class="page container">
@@ -54,6 +43,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             </li>
                             <li>
                                 <a id="myOrder" href="#Handle-myOrder">
+                                	<input type="hidden" id="myCustomerId" value="<%=session.getAttribute("customerId")%>">
                                     <i class="icon-chevron-right pull-right"></i>
                                 		我的订单
                                 </a>
@@ -87,11 +77,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                        <div class="box-content box-table">
                         <table class="table table-hover tablesorter" id="table">
                           	<thead id="tem">
-								<th id="ORDER_ID" width="20%">订单号</th>
-								<th id="PRODUCT_NAME" width="20%">产品名字</th>
-								<th id="NUM" width="20%">购买数量</th>
-								<th id="REMARK" width="20%">备注</th>
-								<th id="ORDER_TIME" width="20%">订单时间</th>
+								<th id="orderId" width="20%">订单号</th>
+								<th id="productName" width="20%">产品名字</th>
+								<th id="num" width="10%">购买数量</th>
+								<th id="remark" width="15%">备注</th>
+								<th id="receiver" width="15%">收件人</th>
+								<th id="orderTime" width="20%">订单时间</th>
 							</thead>
 							<tbody>
 							</tbody>
@@ -129,13 +120,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </div>
                        
                        <div class="box-content box-table">
-                        <table class="table table-hover tablesorter" id="table">
-                          	<thead id="tem">
-								<th id="ORDER_ID" width="15%">订单号</th>
-								<th id="PRODUCT_NAME" width="15%">产品名字</th>
-								<th id="NUM" width="15%">购买数量</th>
-								<th id="REMARK" width="20%">备注</th>
-								<th id="ORDER_TIME" width="20%">订单时间</th>
+                        <table class="table table-hover tablesorter" id="table1">
+                          	<thead id="tem1">
+								<th id="productName" width="25%">产品名字</th>
+								<th id="num" width="25%">购买数量</th>
+								<th id="price" width="25%">价格</th>
 								<th id="handler" width="25">操作</th>
 							</thead>
 							<tbody>
@@ -207,14 +196,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             $('#handle-list > li[class="active"]').removeClass('active');
             $(this).parent().addClass('active');
             e.preventDefault();
-            if($(this).attr('id')=="customer"){
-            	customerSearch();
-            }else if($(this).attr('id')=="order"){
-            	orderSearch();
-            }else if($(this).attr('id')=="product"){
-            	productSearch();
-            }else if($(this).attr('id')=="master"){
-            	masterSearch();
+            if($(this).attr('id')=="myOrder"){
+            	var customerId = $("#myCustomerId")[0].value;
+            	myOrder(customerId);
+      
+            }else if($(this).attr('id')=="myCart"){
+            	var customerId = $("#myCustomerId")[0].value;
+            	queryMyCart(customerId);
             }
         });
     });

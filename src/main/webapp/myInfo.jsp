@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page isELIgnored="false" %>
  <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -10,19 +8,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>aichi铺</title>
-</head>
 <link rel="stylesheet" href="<%=basePath %>resources/css/bootstrap.min.css">
 <script src="<%= basePath%>resources/js/jquery.min.js" type="text/javascript" ></script>
 <script src="<%= basePath%>resources/js/bootstrap.min.js" type="text/javascript" ></script>
-<script src="<%= basePath%>resources/js/test.js" type="text/javascript" ></script>
 <style>
-#div{
-	width:10px;
-	height:80px;
+.tname{
+	font-family:"楷体";
+	font-size:26px;
+	padding-left:30px;
+}
+.hname{
+	font-family:"宋体";
+	font-size:28px;
 }
 </style>
-<body onload="test('<%=basePath%>')">
+<title>我的个人信息</title>
+</head>
+<body>
 	<nav class="navbar navbar-default" role="navigation">
 	    <div class="navbar-header">
 	    	<%
@@ -39,48 +41,46 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    	}
 		    %>			 
 	   	   
-	        <a href="myCart.jsp" style="float:right;margin-right:20px;">我的购物车</a>
+	        <a href="buyer_productList.jsp" style="float:right;margin-right:20px;">我的购物车</a>
 	 
 	        <li class="dropdown" style="float:right;margin-right:20px;list-style-type:none">
 	        	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 	        	我的AiChi
 	        	</a>
 	        	<ul class="dropdown-menu" role="menu">
-	        		<li><a href="myOrder.jsp">我的历史订单</a></li>
-	        		<li><a href="myInfo.jsp">我的个人信息</a></li>
+	        		<li><a href="#">我的历史订单</a></li>
+	        		<li><a href="#">我的个人信息</a></li>
 	        	</ul>
 	        </li>
 	    </div>
 	</nav>
-    <div class="container">
-	    <div class="row" id="box">
-	    	<div class="col-md-1" style="height:1500px;margin-right:100px">菜单栏</div>
-	        <div class="col-md-2" id="div" style="width:300px;height:320px;margin-bottom:30px;" >
-				<div class="thumbnail">
-	                <img src="<%= basePath%>resources/images/products/001.jpg" id="img" style="width:270;height:160px">
-	                <div class="caption" style="text-align:center">
-	                    <h3 id="title">天然紫薯</h3>
-	                    <p id="price"> <span>￥</span>20</p>
-	                    <p><a  class="btn btn-primary" role="button">好吃</a><a href="product.jsp?id=" class="btn btn-default" role="button" id="buy">买我</a></p>
-	                </div>
-	            </div>
-	        </div>
-	    </div>
-
-		<div class="span" style="margin-left:550px;">
+	<div class="container">
+		<table>
+			<thead><td class="hname">您的基础信息</td></thead>
+			<tbody>
+				<tr>
+					<td class="tname">会员名：</td><td class="tname"><%=session.getAttribute("customerName") %></td>
+				</tr>
+				<tr>
+					<td class="tname">登录邮箱：</td><td class="tname"><%=session.getAttribute("email") %></td>
+				</tr>
+				<tr>
+					<td class="tname">绑定手机：</td><td class="tname"><%=session.getAttribute("phone") %>***</td>
+				</tr>
 	
-			<ul class="pagination">
-			  <li><a href="#">&laquo;</a></li>
-			  <li><a href="#">1</a></li>
-			  <li><a href="#">2</a></li>
-			  <li><a href="#">3</a></li>
-			  <li><a href="#">4</a></li>
-			  <li><a href="#">5</a></li>
-			  <li><a href="#">&raquo;</a></li>
-			</ul>
-		</div>
- 
-    </div>
-    
+			</tbody>
+		</table>
+		<table>
+			<thead><td class="hname">您的安全服务</td></thead>
+			<tbody>
+				<tr>
+					<td class="tname">登录密码</td><td><a href="#">修改密码</a></td>		
+				</tr>
+				<tr>
+					<td class="tname">绑定手机</td><td><a href="#">修改绑定手机</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </body>
 </html>

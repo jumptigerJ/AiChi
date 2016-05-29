@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.aichi.bean.Cart;
 import com.aichi.bean.Customer;
 import com.aichi.bean.Order;
 import com.aichi.front.dao.FrontBuyerDao;
@@ -43,5 +44,31 @@ public class FrontBuyerServiceImpl implements FrontBuyerService {
 		List<Customer> list = frontBuyerDao.customerInfo(customer);
 		return list;
 	}
-
+	//返回买家的所有订单消息
+	public List<Order> queryMyOrder(Integer customerId) {
+		List<Order> list = frontBuyerDao.myOrder(customerId);
+		return list;
+	}
+	//添加到购物车
+	public void addToCart(Cart cart) {
+		frontBuyerDao.addToCart(cart);
+	}
+	//显示购物车列表
+	public List<Cart> queryMyCart(Integer customerId) {
+		return frontBuyerDao.myCart(customerId);
+	}
+	//删除购物车的产品
+	public void deleteCartProduct(Integer cartId) {
+		frontBuyerDao.deleteCartProduct(cartId);
+	}
+	//审核修改手机原先号码
+	public boolean checkPhone(String oldPhone) {
+		List<Customer> list = new ArrayList<Customer>();
+		list = frontBuyerDao.checkPhone(oldPhone);
+		if(list.size()!=0){
+			return true;
+		}
+		return false;
+	}
+	
 }

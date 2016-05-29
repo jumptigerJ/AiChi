@@ -30,10 +30,13 @@
 						<value>/aichi/loadProduct</value>
 						<value>/aichi/receiver_info</value>
 						<value>/aichi/buyerLogin</value>
+						<value>/aichi/customerQuery</value>
+						<value>/aichi/orderList</value>
+						<value>/aichi/productList</value>
+						<value>/aichi/masterList</value>
 					</list>
 				</property>
 			</bean>
-			
 		</mvc:interceptor>
 	</mvc:interceptors>
 	

@@ -9,6 +9,7 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.aichi.bean.Cart;
 import com.aichi.bean.Customer;
 import com.aichi.bean.Order;
 import com.aichi.front.dao.FrontBuyerDao;
@@ -46,6 +47,52 @@ public class FrontBuyerDaoImpl extends SqlSessionDaoSupport implements FrontBuye
 		SqlSession sqlSession=null;
 		sqlSession = getSqlSession();
 		list = sqlSession.selectList("Buyer.queryBuyerLogin", customer);
+		return list;
+	}
+	//返回买家的所有订单
+	public List<Order> myOrder(Integer customerId) {
+		List<Order> list = new ArrayList<Order>();
+		SqlSession sqlSession = null;
+		sqlSession = getSqlSession();
+		System.out.println("++++++++"+customerId);
+		list = sqlSession.selectList("Buyer.queryMyOrder", customerId);
+		return list;
+	}
+	//添加到购物车
+	public void addToCart(Cart cart) {
+		SqlSession sqlSession = null;
+		sqlSession = getSqlSession();
+		sqlSession.insert("Buyer.addToCart", cart);
+		
+	}
+	//显示购物车产品
+	public List<Cart> myCart(Integer customerId) {
+		List<Cart> list = new ArrayList<Cart>();
+		SqlSession sqlSession = null;
+		sqlSession = getSqlSession();
+		list = sqlSession.selectList("Buyer.queryMyCart", customerId);
+		return list;
+	}
+	//删除购物车产品
+	public void deleteCartProduct(Integer cartId) {
+		SqlSession sqlSession = null;
+		sqlSession = getSqlSession();
+		sqlSession.delete("Buyer.deleteCartProduct", cartId);
+		
+	}
+
+	public String editPhone(String phone) {
+		
+		return null;
+	}
+
+	public List<Customer> checkPhone(String oldphone) {
+		System.out.println("-----"+oldphone);
+		List<Customer> list = new ArrayList<Customer>();
+		SqlSession sqlSession = null;
+		sqlSession = getSqlSession();
+		list = sqlSession.selectList("Buyer.checkphone", oldphone);
+		System.out.println("-----"+list.size());
 		return list;
 	}
 	
